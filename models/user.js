@@ -23,3 +23,18 @@ UserSchema.pre('save', async function(next) {
     next();
   }
 );
+
+/**
+* Checks if a given password matches the users registered password
+* 
+* @param {string} password Password string to be checked for validity.
+* 
+* @returns {boolean} True is password is valid, False if password is not valid.
+*/
+
+UserSchema.methods.isValidPassword = async function(password) {
+    const user = this;
+    const compare = await bcrypt.compare(password, user.password);
+  
+    return compare;
+}
