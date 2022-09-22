@@ -15,19 +15,25 @@ export default function AuthForm(props) {
 
     let heading;
     let button;
-    let text;
-    let link;
+    let promptText;
+    let promptLink;
+    let forgotPassword;
 
     if(props.isSignup === true){
         heading = "Create a new account";
         button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}}>Sign up</Button>;
-        text = "Already have an account?";
-        link = <Link color={'blue.400'}>Login</Link>
+        promptText = "Already have an account?";
+        promptLink = <Link color={'blue.400'}>Login</Link>
+
     } else{
         heading = "Sign in to your account";
         button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}}>Sign in</Button>;
-        text = "Don't have an account yet?";
-        link = <Link color={'blue.400'}>Register</Link>;
+        promptText = "Don't have an account yet?";
+        promptLink = <Link color={'blue.400'}>Register</Link>;
+        forgotPassword = <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
+                            <Link color={'blue.400'}>Forgot password?</Link>
+                        </Stack>;
+
     }
 
     return (
@@ -47,14 +53,12 @@ export default function AuthForm(props) {
                             <Input type="password" />
                         </FormControl>
                         <Stack spacing={10}>
-                            <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
-                                <Link color={'blue.400'}>Forgot password?</Link>
-                            </Stack>
+                            {forgotPassword}
                             {button}
                         </Stack>
                         <Stack pt={6}>
                             <Text align={'center'}>
-                                {text} {link}
+                                {promptText} {promptLink}
                             </Text>
                         </Stack>
                     </Stack>
