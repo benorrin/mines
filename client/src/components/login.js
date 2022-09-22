@@ -9,7 +9,7 @@ class Login extends React.Component{
 
     render(){
         return(
-            <AuthForm/>
+            <AuthForm isSignup={false}/>
         );
     }
 }
