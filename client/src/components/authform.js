@@ -10,6 +10,7 @@ import {
     Heading,
     Text
     } from '@chakra-ui/react';
+import { Formik } from 'formik';
 
 export default function AuthForm(props) {
 
@@ -21,13 +22,13 @@ export default function AuthForm(props) {
 
     if(props.isSignup === true){
         heading = "Create a new account";
-        button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}}>Sign up</Button>;
+        button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>Sign up</Button>;
         promptText = "Already have an account?";
         promptLink = <Link color={'blue.400'}>Login</Link>
 
     } else{
         heading = "Sign in to your account";
-        button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}}>Sign in</Button>;
+        button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>Sign in</Button>;
         promptText = "Don't have an account yet?";
         promptLink = <Link color={'blue.400'}>Register</Link>;
         forgotPassword = <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
@@ -37,33 +38,37 @@ export default function AuthForm(props) {
     }
 
     return (
-        <Flex align={'center'} justify={'center'}>
-            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-                <Stack align={'center'}>
-                    <Heading fontSize={'4xl'}>{heading}</Heading>
-                </Stack>
-                <Box rounded={'lg'} boxShadow={'lg'} p={4}>
-                    <Stack spacing={4}>
-                        <FormControl id="email">
-                            <FormLabel>Email address</FormLabel>
-                            <Input type="email" />
-                        </FormControl>
-                        <FormControl id="password">
-                            <FormLabel>Password</FormLabel>
-                            <Input type="password" />
-                        </FormControl>
-                        <Stack spacing={10}>
-                            {forgotPassword}
-                            {button}
-                        </Stack>
-                        <Stack pt={6}>
-                            <Text align={'center'}>
-                                {promptText} {promptLink}
-                            </Text>
-                        </Stack>
+        <Formik
+        initialValues={{ username: 'Sasuke' }}
+        onSubmit={ this.props.submit}>
+            <Flex align={'center'} justify={'center'}>
+                <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                    <Stack align={'center'}>
+                        <Heading fontSize={'4xl'}>{heading}</Heading>
                     </Stack>
-                </Box>
-            </Stack>
-        </Flex>
+                    <Box rounded={'lg'} boxShadow={'lg'} p={4}>
+                        <Stack spacing={4}>
+                            <FormControl id="email">
+                                <FormLabel>Email address</FormLabel>
+                                <Input type="email" />
+                            </FormControl>
+                            <FormControl id="password">
+                                <FormLabel>Password</FormLabel>
+                                <Input type="password" />
+                            </FormControl>
+                            <Stack spacing={10}>
+                                {forgotPassword}
+                                {button}
+                            </Stack>
+                            <Stack pt={6}>
+                                <Text align={'center'}>
+                                    {promptText} {promptLink}
+                                </Text>
+                            </Stack>
+                        </Stack>
+                    </Box>
+                </Stack>
+            </Flex>
+        </Formik>
     );
 }

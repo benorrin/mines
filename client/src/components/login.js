@@ -7,9 +7,13 @@ class Login extends React.Component{
 
     }
 
+    submit(values){
+        console.log(values);
+    }
+
     render(){
         return(
-            <AuthForm isSignup={false}/>
+            <AuthForm isSignup={false} submit={this.submit}/>
         );
     }
 }
