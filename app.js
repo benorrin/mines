@@ -16,6 +16,7 @@ var database = require('./controllers/database.js');
 */
 
 var indexRouter = require('./routes/index.js');
+var registerRouter = require('./routes/register.js');
 
 
 var app = express();
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 */
 
 app.use('/', indexRouter);
+app.use('/register', registerRouter);
 
 
 // catch 404 and forward to error handler
