@@ -22,13 +22,13 @@ export default function AuthForm(props) {
 
     if(props.isSignup === true){
         heading = "Create a new account";
-        button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>Sign up</Button>;
+        button = "Sign up"
         promptText = "Already have an account?";
         promptLink = <Link color={'blue.400'}>Login</Link>
 
     } else{
         heading = "Sign in to your account";
-        button = <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>Sign in</Button>;
+        button = "Sign in"
         promptText = "Don't have an account yet?";
         promptLink = <Link color={'blue.400'}>Register</Link>;
         forgotPassword = <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
@@ -40,7 +40,20 @@ export default function AuthForm(props) {
     return (
         <Formik
         initialValues={{ username: 'Sasuke' }}
-        onSubmit={ this.props.submit}>
+        onSubmit={ () => {
+            alert("yay");
+        }}>
+            {({
+         values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+         /* and other goodies */
+       }) => (
+            <form onSubmit={handleSubmit}>
             <Flex align={'center'} justify={'center'}>
                 <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                     <Stack align={'center'}>
@@ -58,7 +71,7 @@ export default function AuthForm(props) {
                             </FormControl>
                             <Stack spacing={10}>
                                 {forgotPassword}
-                                {button}
+                                <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>{button}</Button>;
                             </Stack>
                             <Stack pt={6}>
                                 <Text align={'center'}>
@@ -69,6 +82,8 @@ export default function AuthForm(props) {
                     </Box>
                 </Stack>
             </Flex>
+            </form>
+        )}
         </Formik>
     );
 }
