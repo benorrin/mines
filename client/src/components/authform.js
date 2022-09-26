@@ -10,7 +10,7 @@ import {
     Heading,
     Text
     } from '@chakra-ui/react';
-import { Formik } from 'formik';
+import { Formik, Form, Field } from 'formik';
 
 export default function AuthForm(props) {
 
@@ -39,51 +39,56 @@ export default function AuthForm(props) {
 
     return (
         <Formik
-        initialValues={{ username: 'Sasuke' }}
-        onSubmit={ () => {
-            alert("yay");
-        }}>
+        initialValues={{ email: '', password: '' }}
+        onSubmit={props.submit}>
             {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
-         handleSubmit,
-         isSubmitting,
-         /* and other goodies */
-       }) => (
-            <form onSubmit={handleSubmit}>
-            <Flex align={'center'} justify={'center'}>
-                <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-                    <Stack align={'center'}>
-                        <Heading fontSize={'4xl'}>{heading}</Heading>
-                    </Stack>
-                    <Box rounded={'lg'} boxShadow={'lg'} p={4}>
-                        <Stack spacing={4}>
-                            <FormControl id="email">
-                                <FormLabel>Email address</FormLabel>
-                                <Input type="email" />
-                            </FormControl>
-                            <FormControl id="password">
-                                <FormLabel>Password</FormLabel>
-                                <Input type="password" />
-                            </FormControl>
-                            <Stack spacing={10}>
-                                {forgotPassword}
-                                <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>{button}</Button>;
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting
+            }) => (
+                <Form onSubmit={handleSubmit}>
+                    <Flex align={'center'} justify={'center'}>
+                        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+                            <Stack align={'center'}>
+                                <Heading fontSize={'4xl'}>{heading}</Heading>
                             </Stack>
-                            <Stack pt={6}>
-                                <Text align={'center'}>
-                                    {promptText} {promptLink}
-                                </Text>
-                            </Stack>
+                            <Box rounded={'lg'} boxShadow={'lg'} p={4}>
+                                <Stack spacing={4}>
+                                    <Field name='email'>
+                                        {({ field, form }) => (
+                                        <FormControl>
+                                            <FormLabel>Email address</FormLabel>
+                                            <Input {...field} placeholder='john.smith@example.com' />
+                                        </FormControl>
+                                        )}
+                                    </Field>
+                                    <Field name='password' type='password'>
+                                        {({ field, form }) => (
+                                        <FormControl>
+                                            <FormLabel>Password</FormLabel>
+                                            <Input {...field} type='password'/>
+                                        </FormControl>
+                                        )}
+                                    </Field>
+                                    <Stack spacing={10}>
+                                        {forgotPassword}
+                                        <Button bg={'blue.400'} color={'white'} _hover={{bg: 'blue.500'}} type='submit'>{button}</Button>;
+                                    </Stack>
+                                    <Stack pt={6}>
+                                        <Text align={'center'}>
+                                            {promptText} {promptLink}
+                                        </Text>
+                                    </Stack>
+                                </Stack>
+                            </Box>
                         </Stack>
-                    </Box>
-                </Stack>
-            </Flex>
-            </form>
-        )}
+                    </Flex>
+                </Form>
+            )}
         </Formik>
     );
 }
