@@ -1,3 +1,5 @@
+const UserModel = require('../models/user.js');
+
 
 function registerUser(username, password){
 
@@ -61,8 +63,32 @@ function validatePassword(password){
     return true;
 }
 
-function createUser(username, password){
+/**
+* Creates a user record in the database with a given username and password
+* 
+* @param {string} username Username for user to be created.
+* @param {string} password Password for user to be created.
+* 
+* @returns {boolean} Returns true if creation succeeds. Will throw an error if creation fails.
+*/
 
+async function createUser(username, password){
+    try{
+        const user = await UserModel.create({ username, password });
+        return true;
+    } catch(error){
+        if(error.code == 11000){
+            const field = Object.keys(error.keyValue);
+            const err = Error("Account with username " + field + " already exists");
+            throw err;
+        }
+        if(error.name == 'ValidationError'){
+            const err = Error("Error creating new user");
+            throw err;
+        }
+        const err = Error("Unknown error creating new user");
+        throw err;
+    }
 }
 
 module.exports = { registerUser, validateUsername, validatePassword, createUser };

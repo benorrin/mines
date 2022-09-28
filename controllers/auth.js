@@ -1,5 +1,6 @@
 require('dotenv').config();
 const passport = require('passport');
+const register = require('../controllers/register.js');
 const localStrategy = require('passport-local').Strategy;
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
@@ -11,8 +12,7 @@ passport.use('register', new localStrategy({
     },
     async (username, password, done) => {
         try {
-            const user = await UserModel.create({ username, password });
-
+            const user = await register.createUser(username, password);
             return done(null, user);
         } catch (error) {
             done(error);
