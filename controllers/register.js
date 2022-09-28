@@ -75,7 +75,7 @@ function validatePassword(password){
 async function createUser(username, password){
     try{
         const user = await UserModel.create({ username, password });
-        return true;
+        return user;
     } catch(error){
         if(error.code == 11000){
             const field = Object.keys(error.keyValue);
