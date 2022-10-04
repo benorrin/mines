@@ -5,7 +5,11 @@ import AuthForm from "./authform.js";
 class Register extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            isError: ""
+        }
 
+        this.submit = this.submit.bind(this);
     }
 
     submit(values){
@@ -19,14 +23,13 @@ class Register extends React.Component{
                 console.log("SIGNUP: Signup error 1")
             }
         }).catch(error => {
-            console.log("SIGNUP: Signup error 2")
-            console.log(error)
+            this.setState({isError: error.response.data.message});
         });
     }
 
     render(){
         return(
-            <AuthForm isSignup={true} submit={this.submit}/>
+            <AuthForm isSignup={true} submit={this.submit} isError={this.state.isError}/>
         );
     }
 }

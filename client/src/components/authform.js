@@ -8,7 +8,10 @@ import {
     Link,
     Button,
     Heading,
-    Text
+    Text,
+    Alert,
+    AlertIcon,
+    AlertDescription
     } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 
@@ -19,6 +22,7 @@ export default function AuthForm(props) {
     let promptText;
     let promptLink;
     let forgotPassword;
+    let isError;
 
     if(props.isSignup === true){
         heading = "Create a new account";
@@ -35,6 +39,13 @@ export default function AuthForm(props) {
                             <Link color={'blue.400'}>Forgot password?</Link>
                         </Stack>;
 
+    }
+
+    if(props.isError){
+        isError = <Alert status='error'>
+        <AlertIcon />
+        <AlertDescription>{props.isError}</AlertDescription>
+      </Alert>;
     }
 
     return (
@@ -57,6 +68,7 @@ export default function AuthForm(props) {
                                 <Heading fontSize={'4xl'}>{heading}</Heading>
                             </Stack>
                             <Box rounded={'lg'} boxShadow={'lg'} p={4}>
+                                {isError}
                                 <Stack spacing={4}>
                                     <Field name='email'>
                                         {({ field, form }) => (
