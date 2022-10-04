@@ -64,3 +64,24 @@ async function checkPassword(user, password){
     }
     return true;
 }
+
+
+/**
+* Checks if a given username and password are valid
+* 
+* @param {string} username Username to be checked
+* @param {string} password Password to checked
+* 
+* @returns {object} Returns user object if login is correct. Will throw an error if login is incorrect.
+*/
+
+async function checkLogin(username, password){
+    try{
+        const user = await this.getUser(username);
+        if(this.checkPassword(user, password)){
+            return user;
+        }
+    } catch(error){
+        throw error;
+    }
+}
