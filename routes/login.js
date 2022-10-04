@@ -6,7 +6,16 @@ const login = require('../controllers/login.js');
 
 router.post('/', async (req, res, next) => {
     passport.authenticate('login', async (err, user, info) => {
-        await login(err, user);
+        if(err){
+            return next(err);
+        }
+        if(!user){
+            const error = new Error('An error occurred.');
+            return next(error);
+        }
+        res.json({
+            token: info.token
+        });
     })(req, res, next);
 });
 
