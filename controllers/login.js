@@ -57,13 +57,17 @@ async function getUser(username){
 */
 
 async function checkPassword(user, password){
-    const validPassword = await user.isValidPassword(password);
+    try{
+        const validPassword = await user.isValidPassword(password);
 
-    if (!validPassword) {
-        const error = new Error('Invalid password');
+        if (!validPassword) {
+            const error = new Error('Invalid password');
+            throw error;
+        }
+        return true;
+    } catch(error){
         throw error;
     }
-    return true;
 }
 
 
