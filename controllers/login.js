@@ -85,3 +85,22 @@ async function checkLogin(username, password){
         throw error;
     }
 }
+
+
+/**
+* Generates a session token for a user
+* 
+* @param {object} user User object to generate session token for
+* 
+* @returns {object} Returns token session object if success. Throws error if fails.
+*/
+
+async function getToken(user){
+    try{
+        const body = { _id: user._id, username: user.username };
+        const token = jwt.sign({ user: body }, 'TOP_SECRET');
+        return token;
+    } catch(error){
+        throw error;
+    }
+}
