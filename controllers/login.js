@@ -104,3 +104,5 @@ async function getToken(user){
         throw error;
     }
 }
+
+module.exports = { login, getUser, checkPassword, checkLogin, getToken };
