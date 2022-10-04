@@ -44,3 +44,23 @@ async function getUser(username){
         throw error;
     }
 }
+
+
+/**
+* Checks if a given password is valid for a given user object
+* 
+* @param {object} user User object to check the password against
+* @param {string} password Password to check for validity.
+* 
+* @returns {boolean} Returns true if password is correct. Will throw an error if password is incorrect.
+*/
+
+async function checkPassword(user, password){
+    const validPassword = await user.isValidPassword(password);
+
+    if (!validPassword) {
+        const error = new Error('Invalid password');
+        throw error;
+    }
+    return true;
+}
