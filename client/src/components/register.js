@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthForm from "./authform.js";
 
@@ -19,6 +20,7 @@ class Register extends React.Component{
         }).then(response => {
             if(response.data) {
                 console.log("SIGNUP: Signup successful")
+                this.props.navigate('/login')
             } else {
                 console.log("SIGNUP: Signup error 1")
             }
@@ -34,4 +36,9 @@ class Register extends React.Component{
     }
 }
 
-export default Register;
+function WithNavigate(props) {
+    let navigate = useNavigate();
+    return <Register {...props} navigate={navigate} />
+}
+
+export default WithNavigate
