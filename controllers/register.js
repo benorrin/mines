@@ -1,8 +1,15 @@
 const UserModel = require('../models/user.js');
 
 
-function registerUser(username, password){
-
+async function registerUser(username, password){
+    try{
+        if(await validateUsername(username) && await validatePassword(password) == true){
+            const user = await createUser(username, password);
+            return user;
+        }
+    } catch(error){
+        throw error;
+    }
 }
 
 /**

@@ -12,7 +12,7 @@ passport.use('register', new localStrategy({
     },
     async (username, password, done) => {
         try {
-            const user = await register.createUser(username, password);
+            const user = await register.registerUser(username, password);
             return done(null, user);
         } catch (error) {
             done(error);
