@@ -57,17 +57,13 @@ async function getUser(username){
 */
 
 async function checkPassword(user, password){
-    try{
-        const validPassword = await user.isValidPassword(password);
+    const validPassword = await user.isValidPassword(password);
 
-        if (!validPassword) {
-            const error = new Error('Invalid password');
-            throw error;
-        }
-        return true;
-    } catch(error){
+    if (!validPassword) {
+        const error = new Error('Invalid password');
         throw error;
     }
+    return true;
 }
 
 
@@ -83,7 +79,7 @@ async function checkPassword(user, password){
 async function checkLogin(username, password){
     try{
         const user = await this.getUser(username);
-        if(this.checkPassword(user, password)){
+        if(await this.checkPassword(user, password)){
             return user;
         }
     } catch(error){
