@@ -30,7 +30,7 @@ passport.use('login', new localStrategy({
             const token = await login.getToken(user);
             return done(null, user, { token: token });
         } catch (error) {
-            return done(error);
+            done(error);
         }
     }
 ));
