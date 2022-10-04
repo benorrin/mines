@@ -1,21 +1,21 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-async function login(){
+
+/**
+* Handles user login. Checks username/password and returns a session token.
+* 
+* @param {string} username Username to login
+* @param {string} password Password of given username
+* 
+* @returns {object} Returns token session object if success. Throws error if fails.
+*/
+
+async function login(username, password){
     try {
-        if (err || !user) {
-            const error = new Error('An error occurred.');
-            return next(error);
-        }
-
-        req.login( user, { session: false }, async (error) => {
-            if (error) return next(error);
-
-            const body = { _id: user._id, username: user.username };
-            const token = jwt.sign({ user: body }, 'TOP_SECRET');
-
-            return res.json({ token });
-        });
+        const user = this.checkLogin(username, password);
+        const token = this.getToken(user);
+        return token;
     } catch (error) {
         return next(error);
     }
