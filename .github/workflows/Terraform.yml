@@ -2,7 +2,7 @@ name: Terraform
 
 defaults:
   run:
-    working-directory: test_1
+    working-directory: terraform
 
 on: [push]
 
