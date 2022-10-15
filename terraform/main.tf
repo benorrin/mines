@@ -5,7 +5,6 @@ terraform {
 # Download any stable version in AWS of 2.36.0 or higher
 provider "aws" {
   region  = "us-east-1"
-  version = "~> 2.36.0"
 }
 
 # Call the tfbootstrap module to built tfstate S3 bucket + DB
