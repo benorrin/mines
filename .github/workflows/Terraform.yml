@@ -4,7 +4,10 @@ defaults:
   run:
     working-directory: terraform
 
-on: [push]
+on:
+  push:
+    paths:
+      - terraform/**
 
 jobs:
   terraform:
