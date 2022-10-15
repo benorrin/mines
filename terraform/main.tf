@@ -14,7 +14,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
-# Call the tfbootstrap module to built tfstate S3 bucket + DB
+# Call the tfbootstrap module to built tfstate S3 bucket + DB.
 module "tfbootstrap" {
   source                      = "./modules/tfbootstrap"
   name_of_s3_bucket           = "solmines-terraform-bucket"
