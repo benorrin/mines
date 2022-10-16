@@ -9,7 +9,7 @@ resource "aws_subnet" "solmines-public-subnet" {
     map_public_ip_on_launch = "true"
     availability_zone = "eu-west-2a"
 
-    tags {
+    tags = {
         Name = "solmines-public-subnet"
     }
 }
@@ -21,7 +21,7 @@ resource "aws_subnet" "solmines-private-subnet" {
     map_public_ip_on_launch = "true"
     availability_zone = "eu-west-2a"
 
-    tags {
+    tags = {
         Name = "solmines-private-subnet"
     }
 }
