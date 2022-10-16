@@ -3,7 +3,7 @@
 ####
 
 resource "aws_docdb_subnet_group" "solmines-docdb-subnet-group" {
-  subnet_ids = ["${aws_subnet.solmines-private-subnet.id}"]
+  subnet_ids = ["${aws_subnet.solmines-private-subnet1.id}", "${aws_subnet.solmines-private-subnet2.id}"]
 }
 
 resource "aws_docdb_cluster" "service" {
