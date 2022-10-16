@@ -9,7 +9,7 @@ resource "aws_vpc" "solmines-vpc" {
     enable_classiclink = "false"
     instance_tenancy = "default"    
     
-    tags {
+    tags = {
         Name = "solmines-vpc"
     }
 }
