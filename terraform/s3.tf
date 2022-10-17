@@ -61,12 +61,12 @@ data "aws_iam_policy_document" "solmines-frontend-s3-policy" {
 
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
+      identifiers = [aws_cloudfront_origin_access_identity.solmines-cloudfront-oai.iam_arn]
     }
   }
 
   depends_on = [
-    aws_cloudfront_origin_access_identity.origin_access_identity
+    aws_cloudfront_origin_access_identity.solmines-cloudfront-oai
   ]
 }
 
