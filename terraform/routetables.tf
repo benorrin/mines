@@ -43,11 +43,11 @@ resource "aws_route_table_association" "solmines-crta-public-subnet"{
 # Associate private route table and private subnet 1
 resource "aws_route_table_association" "solmines-crta-private-subnet1"{
     subnet_id = "${aws_subnet.solmines-private-subnet1.id}"
-    route_table_id = "${aws_route_table.solmines-private-crt.id}"
+    route_table_id = "${aws_route_table.solmines-private-crt1.id}"
 }
 
 # Associate private route table and private subnet 2
 resource "aws_route_table_association" "solmines-crta-private-subnet2"{
     subnet_id = "${aws_subnet.solmines-private-subnet2.id}"
-    route_table_id = "${aws_route_table.solmines-private-crt.id}"
+    route_table_id = "${aws_route_table.solmines-private-crt2.id}"
 }
