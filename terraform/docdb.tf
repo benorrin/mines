@@ -12,6 +12,6 @@ resource "aws_docdb_cluster" "service" {
   cluster_identifier      = "solmines-docdb-cluster"
   engine                  = "docdb"
   master_username         = "solmines_admin"
-  master_password         = "z&8FRC65X6Q7G%j#hX$ucf$!tvEixR4S^hL#qMtpiA*dESd@bHH$qZ&k8gwG#$92"
+  master_password         = "JU49dbdnd9pPa52wJEQ6jyMLA2PkrwBwqT4ScTbDd9k87ZWRc2N4kfikqCW9pDhG"
   vpc_security_group_ids = ["${aws_security_group.solmines-database.id}"]
 }
