@@ -7,7 +7,7 @@ variable "region" {
 }
 
 variable "db_username" {
-  default = "solmines-admin"
+  default = "solminesadmin"
   sensitive = true
 }
 
