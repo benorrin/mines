@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "solmines-ecs-task-definition" {
 [
   {
     "name": "solmines",
-    "image": "${aws_ecr_repository.solmines-ecr-repository.arn}:latest",
+    "image": "${aws_ecr_repository.solmines-ecr-repository.repository_url}:latest",
     "memory": 1024,
     "cpu": 512,
     "essential": true,
