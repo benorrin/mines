@@ -33,7 +33,6 @@ resource "aws_ecs_task_definition" "solmines-ecs-task-definition" {
     "memory": 1024,
     "cpu": 512,
     "essential": true,
-    "entryPoint": ["/"],
     "portMappings": [
       {
         "containerPort": 80,
