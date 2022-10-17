@@ -68,12 +68,15 @@ test('validatePassword: Valid password of 8 characters should return true', () =
 *   createUser tests
 */
 
-test('createUser: Non empty input should create account and return true', () => {
-    expect( register.createUser('johnsmith1', 'smithjohn') ).toBe(true);
+test('createUser: Non empty input should create account and return true', async () => {
+    const data = await register.createUser('johnsmith1', 'smithjohn');
+    expect(data).toBe('peanut butter');
 });
 
-test('createUser: Duplicate user/pass should not create user and should throw error', () => {
-    expect( async () => {
-        register.createUser('johnsmith1', 'smithjohn')
-    }).toThrow("Account with username johnsmith1 already exists");
+test('createUser: Duplicate user/pass should not create user and should throw error', async () => {
+    try{
+        await register.createUser('johnsmith1', 'smithjohn');
+    } catch(error){
+        expect(error).toMatch('error');
+    }
 });
