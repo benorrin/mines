@@ -3,7 +3,7 @@ terraform {
   backend "s3" {
     bucket         = "solmines-terraform-bucket"
     key            = "terraform.tfstate"
-    region         = "us-east-1"
+    region         = "${var.region}"
     dynamodb_table = "aws-locks"
     encrypt        = true
   }
@@ -11,7 +11,7 @@ terraform {
 
 # Download any stable version in AWS of 2.36.0 or higher
 provider "aws" {
-  region  = "us-east-1"
+  region  = "${var.region}"
 }
 
 # Call the tfbootstrap module to built tfstate S3 bucket + DB.
