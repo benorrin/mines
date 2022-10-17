@@ -22,6 +22,7 @@ resource "aws_cloudfront_distribution" "solmines-cloudfront-dist" {
     minimum_protocol_version = "TLSv1"
   }
 
+  # Custom error handlers for react
   custom_error_response {
     error_code    = 403
     response_code = 200
