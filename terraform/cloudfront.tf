@@ -16,6 +16,10 @@ resource "aws_cloudfront_distribution" "solmines-cloudfront-dist" {
     }
   }
 
+  viewer_certificate {
+    acm_certificate_arn = "arn:aws:acm:us-east-1:422678325178:certificate/fec9df4a-878a-42c3-8dad-6f4352d12a64"
+  }
+
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
@@ -69,10 +73,6 @@ resource "aws_cloudfront_distribution" "solmines-cloudfront-dist" {
     geo_restriction {
       restriction_type = "none"
     }
-  }
-
-  viewer_certificate {
-    cloudfront_default_certificate = true
   }
 
   depends_on = [
