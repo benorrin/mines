@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "solmines-cloudfront-dist" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = "arn:aws:acm:us-east-1:422678325178:certificate/fec9df4a-878a-42c3-8dad-6f4352d12a64"
+    acm_certificate_arn = "arn:aws:acm:us-east-1:422678325178:certificate/f41daf72-8871-4284-b590-cdba42cb5421"
     ssl_support_method = "sni-only"
     minimum_protocol_version = "TLSv1"
   }
