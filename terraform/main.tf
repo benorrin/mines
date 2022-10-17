@@ -3,7 +3,7 @@ terraform {
   backend "s3" {
     bucket         = "solmines-terraform-bucket"
     key            = "terraform.tfstate"
-    region         = "${var.region}"
+    region         = "us-east-1"
     dynamodb_table = "aws-locks"
     encrypt        = true
   }
