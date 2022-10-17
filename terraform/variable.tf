@@ -1,3 +1,7 @@
+####
+# Variable Declarations
+####
+
 variable "region" {
   default = "us-east-1"
 }
