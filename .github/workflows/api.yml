@@ -40,10 +40,10 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         uses: docker/build-push-action@v3
-        with:
-          build-args: |
-            - "mongodb_uri=${{ secrets.MONGODB_URI }}"
-            - "secret_key=${{ secrets.SECRET_KEY }}"
-          context: "{{defaultContext}}:api"
-          push: true
-          tags: latest
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: latest
+        run: | 
+          docker build . --build-arg mongodb_uri=${{ secrets.MONGODB_URI }} --build-arg secret_key=${{ secrets.SECRET_KEY }} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
