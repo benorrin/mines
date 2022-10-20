@@ -19,3 +19,15 @@ resource "aws_lb_target_group" "solmines-lb-tg" {
   target_type = "ip"
   vpc_id      = aws_vpc.solmines-vpc.id
 }
+
+resource "aws_lb_listener" "solmines-lb-listener" {
+  load_balancer_arn = aws_lb.solmines-lb.arn
+  port              = "80"
+  protocol          = "HTTP"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.solmines-lb-tg.arn
+  }
+}

@@ -23,6 +23,8 @@ resource "aws_ecs_service" "solmines-ecs-service" {
     container_name   = "solmines-api"
     container_port   = 80
   }
+
+  depends_on = [aws_lb_listener.solmines-lb-listener]
 }
 
 resource "aws_ecs_task_definition" "solmines-ecs-task-definition" {
