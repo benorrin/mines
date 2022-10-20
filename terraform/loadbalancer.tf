@@ -24,7 +24,6 @@ resource "aws_lb_listener" "solmines-lb-listener" {
   load_balancer_arn = aws_lb.solmines-lb.arn
   port              = "80"
   protocol          = "HTTP"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
 
   default_action {
     type             = "forward"
