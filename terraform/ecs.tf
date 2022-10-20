@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "solmines-ecs-task-definition" {
   container_definitions    = <<EOF
 [
   {
-    "name": "solmines",
+    "name": "solmines-api",
     "image": "${aws_ecr_repository.solmines-ecr-repository.repository_url}:latest",
     "memory": 1024,
     "cpu": 512,
