@@ -4,7 +4,6 @@
 
 resource "aws_ecr_repository" "solmines-ecr-repository" {
   name                 = "solmines-ecr-repository"
-  image_tag_mutability = "IMMUTABLE"
 }
 
 resource "aws_ecr_repository_policy" "solmines-ecr-repository-policy" {
