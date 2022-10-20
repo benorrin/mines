@@ -42,8 +42,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           build-args:
-            "mongodb_uri=${{ secrets.MONGODB_URI }}"
-            "secret_key=${{ secrets.SECRET_KEY }}"
+            - "mongodb_uri=${{ secrets.MONGODB_URI }}"
+            - "secret_key=${{ secrets.SECRET_KEY }}"
           context: .
           push: true
           tags: latest
