@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 
 /*
-*  Controller Imports
+*  Controller Imports 
 */
 
 var database = require('./controllers/database.js');
