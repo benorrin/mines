@@ -13,6 +13,7 @@ resource "aws_ecs_service" "solmines-ecs-service" {
   launch_type     = "FARGATE"
   desired_count = 1
   network_configuration {
+    security_groups  = [aws_security_group.solmines-ecs.id]
     subnets          = ["${aws_subnet.solmines-public-subnet.id}"]
     assign_public_ip = true
   }
