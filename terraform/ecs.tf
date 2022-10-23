@@ -14,7 +14,7 @@ resource "aws_ecs_service" "solmines-ecs-service" {
   desired_count = 1
 
   network_configuration {
-    subnets          = ["${aws_subnet.solmines-public-subnet1.id}", "${aws_subnet.solmines-public-subnet2.id}"]
+    subnets          = ["${aws_subnet.solmines-public-subnet1.id}, ${aws_subnet.solmines-public-subnet2.id}"]
     assign_public_ip = true
   }
 
