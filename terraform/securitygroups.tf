@@ -39,22 +39,3 @@ vpc_id      = "${aws_vpc.solmines-vpc.id}"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-# Create ECE security group 
-resource "aws_security_group" "solmines-ecs" {
-vpc_id      = "${aws_vpc.solmines-vpc.id}"
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
