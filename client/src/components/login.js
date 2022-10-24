@@ -15,7 +15,7 @@ class Login extends React.Component{
     }
 
     submit(values){
-        axios.post('http://localhost:3000/login', {
+        axios.post('http://api.mines.orrin.uk:80/login', {
             username: values.email,
             password: values.password
         }).then(response => {

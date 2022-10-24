@@ -14,7 +14,7 @@ class Register extends React.Component{
     }
 
     submit(values){
-        axios.post('http://localhost:3000/register', {
+        axios.post('http://api.mines.orrin.uk:80/register', {
             username: values.email,
             password: values.password
         }).then(response => {
