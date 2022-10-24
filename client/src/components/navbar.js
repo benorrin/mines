@@ -72,10 +72,8 @@ const MenuLinks = ({ isOpen }) => {
             direction={["column", "row", "row", "row"]}
             pt={[4, 4, 0, 0]}
         >
-            <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/how">How It works </MenuItem>
-            <MenuItem to="/faetures">Features </MenuItem>
-            <MenuItem to="/pricing">Pricing </MenuItem>
+            <MenuItem to="/play">Play</MenuItem>
+            <MenuItem to="/faq">FAQ</MenuItem>
             <MenuItem to="/signup" isLast>
                 <Button
                     size="sm"
@@ -104,7 +102,7 @@ const NavBarContainer = ({ children, ...props }) => {
         w="100%"
         mb={0}
         p={8}
-        bg={["primary.500", "primary.500", "transparent", "transparent"]}
+        bg="#163d5e"
         color={["black", "black", "primary.700", "primary.700"]}
         {...props}
         >
