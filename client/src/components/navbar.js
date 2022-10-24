@@ -11,7 +11,7 @@ const NavBar = (props) => {
         <NavBarContainer {...props}>
             <Logo
             w="200px"
-            color={["black", "black", "primary.500", "primary.500"]}
+            color="white"
             />
             <MenuToggle toggle={toggle} isOpen={isOpen} />
             <MenuLinks isOpen={isOpen} />
@@ -103,7 +103,7 @@ const NavBarContainer = ({ children, ...props }) => {
         mb={0}
         p={8}
         bg="#163d5e"
-        color={["black", "black", "primary.700", "primary.700"]}
+        color="white"
         {...props}
         >
             {children}
