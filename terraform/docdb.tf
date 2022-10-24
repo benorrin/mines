@@ -19,7 +19,7 @@ resource "aws_docdb_cluster" "solmines-docdb-cluster" {
 
 resource "aws_docdb_cluster_parameter_group" "solmines-docdb-pg" {
   family = "docdb3.6"
-  name = "tf-${var.name}"
+  name = "solmines-docdb-pg"
 
   parameter {
     name  = "tls"
