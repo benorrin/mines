@@ -28,13 +28,13 @@ export default function AuthForm(props) {
         heading = "Create a new account";
         button = "Sign up"
         promptText = "Already have an account?";
-        promptLink = <Link color={'blue.400'}>Login</Link>
+        promptLink = <Link href="https://mines.orrin.uk/login" color={'blue.400'}>Login</Link>
 
     } else{
         heading = "Sign in to your account";
         button = "Sign in"
         promptText = "Don't have an account yet?";
-        promptLink = <Link color={'blue.400'}>Register</Link>;
+        promptLink = <Link href="https://mines.orrin.uk/register" color={'blue.400'}>Register</Link>;
         forgotPassword = <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
                             <Link color={'blue.400'}>Forgot password?</Link>
                         </Stack>;
