@@ -22,8 +22,10 @@ resource "aws_lb_target_group" "solmines-lb-tg" {
 
 resource "aws_lb_listener" "solmines-lb-listener" {
   load_balancer_arn = aws_lb.solmines-lb.arn
-  port              = "80"
-  protocol          = "HTTP"
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = "arn:aws:acm:us-east-1:422678325178:certificate/f41daf72-8871-4284-b590-cdba42cb5421"
 
   default_action {
     type             = "forward"

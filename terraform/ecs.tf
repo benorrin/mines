@@ -12,10 +12,17 @@ resource "aws_ecs_service" "solmines-ecs-service" {
   task_definition = aws_ecs_task_definition.solmines-ecs-task-definition.arn
   launch_type     = "FARGATE"
   desired_count = 1
+
   network_configuration {
     security_groups  = [aws_security_group.solmines-ecs.id]
-    subnets          = ["${aws_subnet.solmines-public-subnet1.id}", "${aws_subnet.solmines-public-subnet2.id}"]
+    subnets          = ["${aws_subnet.solmines-public-subnet1.id}", "${aws_subnet.solmines-public-subnet1.id}"]
     assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.solmines-lb-tg.arn
+    container_name   = "solmines"
+    container_port   = 80
   }
 }
 

@@ -2,23 +2,14 @@
 # Custom Route Table Declarations
 ####
 
-# Create custom route table for public subnet
-resource "aws_route_table" "solmines-public-crt" {
+# Create custom route table for public subnet 1
+resource "aws_route_table" "solmines-public-crt1" {
     vpc_id = "${aws_vpc.solmines-vpc.id}"
-    
+
     route {
         cidr_block = "0.0.0.0/0" 
         gateway_id = "${aws_internet_gateway.solmines-igw.id}" 
     }
-    
-    tags = {
-        Name = "solmines-public-crt"
-    }
-}
-
-# Create custom route table for public subnet 1
-resource "aws_route_table" "solmines-public-crt1" {
-    vpc_id = "${aws_vpc.solmines-vpc.id}"
     
     tags = {
         Name = "solmines-public-crt1"
@@ -28,6 +19,11 @@ resource "aws_route_table" "solmines-public-crt1" {
 # Create custom route table for public subnet 2
 resource "aws_route_table" "solmines-public-crt2" {
     vpc_id = "${aws_vpc.solmines-vpc.id}"
+
+    route {
+        cidr_block = "0.0.0.0/0" 
+        gateway_id = "${aws_internet_gateway.solmines-igw.id}" 
+    }
     
     tags = {
         Name = "solmines-public-crt2"
