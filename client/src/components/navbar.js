@@ -11,7 +11,7 @@ const NavBar = (props) => {
     let buttonRoute;
     let buttonText;
 
-    if(props.state.loggedIn === true){
+    if(props.state.authState === true){
         buttonRoute = "/logout";
         buttonText = "Logout";
     } else{
