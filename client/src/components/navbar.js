@@ -74,7 +74,7 @@ const MenuLinks = ({ isOpen }) => {
         >
             <MenuItem to="/play">Play</MenuItem>
             <MenuItem to="/faq">FAQ</MenuItem>
-            <MenuItem to="/register" isLast>
+            <MenuItem to="/login" isLast>
                 <Button
                     size="sm"
                     rounded="md"

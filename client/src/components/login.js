@@ -22,12 +22,14 @@ class Login extends React.Component{
             if(response.data) {
                 console.log("LOGIN: Login successful")
                 localStorage.setItem('token', response.data.token)
+                this.props.setAuthState(true);
                 this.props.navigate('/')
             } else {
                 console.log("Error: Login error 1")
             }
         }).catch(error => {
             this.setState({isError: error.response.data.message});
+            this.props.setAuthState(false);
         });
     }
 
