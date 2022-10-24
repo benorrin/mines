@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthForm from "./authform.js";
+const variables = require('../variables.js');
 
 class Register extends React.Component{
     constructor(props){
@@ -14,7 +15,7 @@ class Register extends React.Component{
     }
 
     submit(values){
-        axios.post('http://localhost:3000/register', {
+        axios.post(process.env.API_URL + '/register', {
             username: values.email,
             password: values.password
         }).then(response => {
