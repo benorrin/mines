@@ -10,10 +10,14 @@ const NavBar = (props) => {
 
     let buttonRoute;
     let buttonText;
+    let userBalance;
+    let accountPage;
 
     if(props.state.authState === true){
         buttonRoute = "/logout";
         buttonText = "Logout";
+        userBalance = <MenuItem>$10,000</MenuItem>
+        accountPage = <MenuItem to="/account">Account</MenuItem>
     } else{
         buttonRoute = "/login";
         buttonText = "Login";
@@ -26,7 +30,7 @@ const NavBar = (props) => {
             color="white"
             />
             <MenuToggle toggle={toggle} isOpen={isOpen} />
-            <MenuLinks isOpen={isOpen} buttonRoute={buttonRoute} buttonText={buttonText} />
+            <MenuLinks isOpen={isOpen} buttonRoute={buttonRoute} buttonText={buttonText} userBalance={userBalance} accountPage={accountPage} />
         </NavBarContainer>
     );
 };
@@ -71,7 +75,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
     );
 };
 
-const MenuLinks = ({ isOpen, buttonRoute, buttonText }) => {
+const MenuLinks = ({ isOpen, buttonRoute, buttonText, userBalance, accountPage }) => {
     return (
         <Box
             display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -86,6 +90,9 @@ const MenuLinks = ({ isOpen, buttonRoute, buttonText }) => {
         >
             <MenuItem to="/play">Play</MenuItem>
             <MenuItem to="/faq">FAQ</MenuItem>
+            <MenuItem>|</MenuItem>
+            {userBalance}
+            {accountPage}
             <MenuItem to={buttonRoute} isLast>
                 <Button
                     size="sm"
