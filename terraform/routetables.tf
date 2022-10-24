@@ -16,6 +16,24 @@ resource "aws_route_table" "solmines-public-crt" {
     }
 }
 
+# Create custom route table for public subnet 1
+resource "aws_route_table" "solmines-public-crt1" {
+    vpc_id = "${aws_vpc.solmines-vpc.id}"
+    
+    tags = {
+        Name = "solmines-public-crt1"
+    }
+}
+
+# Create custom route table for public subnet 2
+resource "aws_route_table" "solmines-public-crt2" {
+    vpc_id = "${aws_vpc.solmines-vpc.id}"
+    
+    tags = {
+        Name = "solmines-public-crt2"
+    }
+}
+
 # Create custom route table for private subnet 1
 resource "aws_route_table" "solmines-private-crt1" {
     vpc_id = "${aws_vpc.solmines-vpc.id}"
@@ -34,10 +52,16 @@ resource "aws_route_table" "solmines-private-crt2" {
     }
 }
 
-# Associate public route table and public subnet 
-resource "aws_route_table_association" "solmines-crta-public-subnet"{
-    subnet_id = "${aws_subnet.solmines-public-subnet.id}"
-    route_table_id = "${aws_route_table.solmines-public-crt.id}"
+# Associate public route table and public subnet 1
+resource "aws_route_table_association" "solmines-crta-public-subnet1"{
+    subnet_id = "${aws_subnet.solmines-public-subnet1.id}"
+    route_table_id = "${aws_route_table.solmines-public-crt1.id}"
+}
+
+# Associate public route table and public subnet 2
+resource "aws_route_table_association" "solmines-crta-public-subnet2"{
+    subnet_id = "${aws_subnet.solmines-public-subnet2.id}"
+    route_table_id = "${aws_route_table.solmines-public-crt2.id}"
 }
 
 # Associate private route table and private subnet 1
