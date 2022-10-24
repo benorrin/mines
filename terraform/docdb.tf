@@ -18,7 +18,7 @@ resource "aws_docdb_cluster" "solmines-docdb-cluster" {
 }
 
 resource "aws_docdb_cluster_parameter_group" "solmines-docdb-pg" {
-  family = "docdb3.6"
+  family = "docdb4.0"
   name = "solmines-docdb-pg"
 
   parameter {
@@ -31,5 +31,5 @@ resource "aws_docdb_cluster_instance" "solmines-docdb-instance" {
   count              = 1
   identifier         = "solmines-docdb-instance"
   cluster_identifier = "${aws_docdb_cluster.solmines-docdb-cluster.id}"
-  instance_class     = "db.r4.large"
+  instance_class     = "db.r5.large"
 }
