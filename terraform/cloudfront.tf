@@ -79,7 +79,7 @@ resource "aws_cloudfront_distribution" "solmines-cloudfront-dist" {
     default_ttl            = 3600
     max_ttl                = 86400
     compress               = true
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "allow-all"
   }
 
   price_class = "PriceClass_200"
