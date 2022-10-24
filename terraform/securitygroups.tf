@@ -36,6 +36,6 @@ vpc_id      = "${aws_vpc.solmines-vpc.id}"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
