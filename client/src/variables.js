@@ -1,1 +1,0 @@
-process.env.API_URL = 'http://api.mines.orrin.uk';
