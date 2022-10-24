@@ -2,10 +2,22 @@ import React from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import Logo from "./logo.js";
 
+
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
+
+    let buttonRoute;
+    let buttonText;
+
+    if(props.state.loggedIn === true){
+        buttonRoute = "/logout";
+        buttonText = "Logout";
+    } else{
+        buttonRoute = "/login";
+        buttonText = "Login";
+    }
 
     return (
         <NavBarContainer {...props}>
@@ -14,7 +26,7 @@ const NavBar = (props) => {
             color="white"
             />
             <MenuToggle toggle={toggle} isOpen={isOpen} />
-            <MenuLinks isOpen={isOpen} />
+            <MenuLinks isOpen={isOpen} buttonRoute={buttonRoute} buttonText={buttonText} />
         </NavBarContainer>
     );
 };
@@ -59,7 +71,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
     );
 };
 
-const MenuLinks = ({ isOpen }) => {
+const MenuLinks = ({ isOpen, buttonRoute, buttonText }) => {
     return (
         <Box
             display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -74,17 +86,14 @@ const MenuLinks = ({ isOpen }) => {
         >
             <MenuItem to="/play">Play</MenuItem>
             <MenuItem to="/faq">FAQ</MenuItem>
-            <MenuItem to="/login" isLast>
+            <MenuItem to={buttonRoute} isLast>
                 <Button
                     size="sm"
                     rounded="md"
-                    color={["primary.500", "primary.500", "white", "white"]}
-                    bg={["black", "black", "primary.500", "primary.500"]}
-                    _hover={{
-                    bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-                    }}
+                    color="white"
+                    bg="black"
                 >
-                Login
+                {buttonText}
                 </Button>
             </MenuItem>
         </Stack>
