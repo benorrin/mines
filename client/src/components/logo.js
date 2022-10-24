@@ -5,7 +5,7 @@ export default function Logo(props) {
     return (
         <Box {...props}>
             <Text fontSize="3xl" fontWeight="bold">
-                <Link href='https://mines.orrin.uk' isExternal>
+                <Link href='https://mines.orrin.uk'>
                     SolMines
                 </Link>
             </Text>
