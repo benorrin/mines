@@ -4,10 +4,6 @@ import axios from 'axios';
 
 
 class Logout extends React.Component{
-    constructor(props){
-        super(props);
-
-    }
 
     componentDidMount() {
         console.log("App container has loaded");
