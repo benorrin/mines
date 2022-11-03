@@ -15,9 +15,9 @@ const Home = () => {
                     <Heading fontSize={'5xl'}>SolMines</Heading>
                     <Text fontSize='3xl'>Classic Minesweeper With a Twist</Text>
                 </Stack>
-                <Stack spacing={8} align={'center'}>
+                <Stack spacing={12} align={'center'}>
                 <Link href='https://mines.orrin.uk/play'>
-                    <Button colorScheme='whatsapp' height='1em' width='100%'>
+                    <Button colorScheme='whatsapp' height='3em' width='30em'>
                         Play Now
                     </Button>
                 </Link>
