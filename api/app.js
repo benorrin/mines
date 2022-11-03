@@ -22,6 +22,7 @@ var auth = require('./controllers/auth.js');
 var indexRouter = require('./routes/index.js');
 var registerRouter = require('./routes/register.js');
 var loginRouter = require('./routes/login.js');
+var userRouter = require('./routes/user.js');
 
 
 var app = express();
@@ -34,7 +35,8 @@ var app = express();
 app.use(session({
   secret: 'em*LE#z#qYz#G%HactjPBNW@*9T88FgV3NW%X^YMmuwWhpcMuhUBWYKs^awVTsKa',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: true }
   })
 )
 app.use(passport.initialize())
@@ -68,6 +70,7 @@ app.set('view engine', 'jade');
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+app.use('/user', passport.authenticate('jwt'), userRouter);
 
 
 /*
