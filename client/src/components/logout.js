@@ -7,7 +7,15 @@ class Logout extends React.Component{
 
     componentDidMount() {
         console.log("App container has loaded");
-        this.logoutUser();
+        this.checkAuthStatus();
+    }
+
+    checkAuthStatus(){
+        if(localStorage.getItem("token")){
+            this.logoutUser();
+        } else{
+            this.props.navigate('/');
+        }
     }
 
     logoutUser(){
