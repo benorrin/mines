@@ -21,7 +21,7 @@ class Logout extends React.Component{
     logoutUser(){
         axios.post('https://api.mines.orrin.uk/logout', {}, {
             headers: {
-                'Authorization': 'Bearer ' + this.props.token
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
             }
         }).then(response => {
             if(response.data) {
