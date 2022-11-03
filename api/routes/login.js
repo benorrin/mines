@@ -15,7 +15,7 @@ router.post('/', async (req, res, next) => {
         }
         res.json({
             token: info.token,
-            username: user.username
+            username: user
         });
     })(req, res, next);
 });
