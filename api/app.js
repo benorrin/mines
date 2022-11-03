@@ -22,6 +22,7 @@ var auth = require('./controllers/auth.js');
 var indexRouter = require('./routes/index.js');
 var registerRouter = require('./routes/register.js');
 var loginRouter = require('./routes/login.js');
+var logoutRouter = require('./routes/logout.js');
 
 
 var app = express();
@@ -68,6 +69,7 @@ app.set('view engine', 'jade');
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+app.use('/logout', passport.authenticate('jwt'), logoutRouter);
 
 
 /*
