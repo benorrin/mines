@@ -69,7 +69,7 @@ app.set('view engine', 'jade');
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
-app.use('/logout', passport.authenticate('jwt'), logoutRouter);
+app.use('/logout', passport.authenticate('jwt', {session: false}), logoutRouter);
 
 
 /*
