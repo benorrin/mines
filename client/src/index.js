@@ -13,10 +13,21 @@ class App extends React.Component{
 
         this.state = {
             authState: false,
+            token: "",
             username: ""
         }
 
         this.setAuthState = this.setAuthState.bind(this);
+        this.checkAuthState = this.checkAuthState.bind(this);
+
+        this.checkAuthState();
+    }
+
+    checkAuthState(){
+        if(localStorage.getItem("token")){
+            this.setAuthState(true);
+            this.setState({token: localStorage.getItem("token"), user: localStorage.getItem("user")});
+        }
     }
 
     setAuthState(authState){
