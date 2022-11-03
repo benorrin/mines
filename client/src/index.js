@@ -30,7 +30,7 @@ class App extends React.Component{
     checkAuthState(){
         if(localStorage.getItem("token")){
             this.setAuthState(true);
-            this.setState({token: localStorage.getItem("token"), user: localStorage.getItem("user")});
+            this.setState({token: localStorage.getItem("token"), user: localStorage.getItem("username")});
         }
     }
 
@@ -45,7 +45,7 @@ class App extends React.Component{
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/login" element={<Login state={this.state} setAuthState={this.setAuthState} />}></Route>
-                    <Route path="/logout" element={<Logout state={this.state} setAuthState={this.setAuthState} />}></Route>
+                    <Route path="/logout" element={<Logout token={this.state.token} setAuthState={this.setAuthState} />}></Route>
                     <Route path="/register" element={<Register />}></Route>
                 </Routes>
             </BrowserRouter>
