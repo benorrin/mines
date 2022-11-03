@@ -27,6 +27,7 @@ class Logout extends React.Component{
             }
         }).catch(error => {
             this.props.setAuthState(true);
+            console.log(error);
         });
     }
 
