@@ -19,7 +19,10 @@ class App extends React.Component{
 
         this.setAuthState = this.setAuthState.bind(this);
         this.checkAuthState = this.checkAuthState.bind(this);
+    }
 
+    componentDidMount() {
+        console.log("App container has loaded");
         this.checkAuthState();
     }
 
