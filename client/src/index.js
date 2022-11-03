@@ -45,7 +45,7 @@ class App extends React.Component{
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/login" element={<Login state={this.state} setAuthState={this.setAuthState} />}></Route>
-                    <Route path="/logout" element={<Logout />}></Route>
+                    <Route path="/logout" element={<Logout state={this.state} setAuthState={this.setAuthState} />}></Route>
                     <Route path="/register" element={<Register />}></Route>
                 </Routes>
             </BrowserRouter>

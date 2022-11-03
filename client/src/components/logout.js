@@ -13,7 +13,7 @@ class Logout extends React.Component{
     logoutUser(){
         axios.post('https://api.mines.orrin.uk/logout', {}, {
             headers: {
-                'Authorization': `Bearer `+ this.token
+                'Authorization': 'Bearer ' + this.props.token
             }
         }).then(response => {
             if(response.data) {
