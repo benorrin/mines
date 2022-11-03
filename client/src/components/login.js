@@ -22,7 +22,7 @@ class Login extends React.Component{
             if(response.data) {
                 console.log("LOGIN: Login successful")
                 localStorage.setItem('token', response.data.token)
-                localStorage.setItem('username', response.data.user)
+                localStorage.setItem('username', response.data.username)
                 this.props.setAuthState(true);
                 this.props.navigate('/')
             } else {
