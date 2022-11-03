@@ -1,3 +1,4 @@
+require('dotenv').config();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/user.js');
@@ -99,7 +100,7 @@ async function checkLogin(username, password){
 async function getToken(user){
     try{
         const body = { _id: user._id, username: user.username };
-        const token = jwt.sign({ user: body }, 'TOP_SECRET');
+        const token = jwt.sign({ user: body }, process.env.SECRET_KEY);
         return token;
     } catch(error){
         throw error;
