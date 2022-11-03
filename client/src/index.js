@@ -30,7 +30,7 @@ class App extends React.Component{
     checkAuthState(){
         if(localStorage.getItem("token")){
             this.setAuthState(true);
-            this.setState({token: localStorage.getItem("token"), user: localStorage.getItem("username")});
+            this.setState({token: localStorage.getItem("token"), username: localStorage.getItem("username")});
         }
     }
 
