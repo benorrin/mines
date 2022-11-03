@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Navbar from "./components/navbar.js";
 import Home from "./components/home.js";
 import Login from "./components/login.js";
+import Logout from "./components/logout.js";
 import Register from "./components/register.js";
 
 class App extends React.Component{
@@ -44,6 +45,7 @@ class App extends React.Component{
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/login" element={<Login state={this.state} setAuthState={this.setAuthState} />}></Route>
+                    <Route path="/logout" element={<Logout />}></Route>
                     <Route path="/register" element={<Register />}></Route>
                 </Routes>
             </BrowserRouter>

@@ -21,7 +21,6 @@ class Login extends React.Component{
         }).then(response => {
             if(response.data) {
                 console.log("LOGIN: Login successful")
-                localStorage.setItem('loggedin', true)
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('username', response.data.user)
                 this.props.setAuthState(true);
