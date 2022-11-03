@@ -63,7 +63,7 @@ app.set('view engine', 'jade');
 
 
 /*
-*  Route Declarations
+*  Route Declarations 
 */
 
 app.use('/', indexRouter);
