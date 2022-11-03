@@ -7,7 +7,7 @@ class Logout extends React.Component{
 
     componentDidMount() {
         console.log("App container has loaded");
-        this.checkAuthState();
+        this.logoutUser();
     }
 
     logoutUser(){
@@ -26,8 +26,7 @@ class Logout extends React.Component{
                 console.log("Error: Logout error")
             }
         }).catch(error => {
-            this.setState({isError: error.response.data.message});
-            this.props.setAuthState(false);
+            this.props.setAuthState(true);
         });
     }
 
