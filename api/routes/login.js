@@ -14,7 +14,8 @@ router.post('/', async (req, res, next) => {
             return next(error);
         }
         res.json({
-            token: info.token
+            token: info.token,
+            username: user.name
         });
     })(req, res, next);
 });
