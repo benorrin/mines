@@ -14,7 +14,9 @@ class Mines extends React.Component {
             gameState: [],
             btndisabled: "",
             bet: 500,
-            balance: 0
+            balance: 0,
+            moves: 0,
+            winnings: 0
         }
 
         this.token = localStorage.getItem("token");
@@ -40,6 +42,9 @@ class Mines extends React.Component {
         console.log("New Game");
 
         this.generateBoard();
+
+        this.setState({moves: 0});
+        this.setState({winnings: 0});
 
         axios.post('https://api.mines.orrin.uk/game/new', { bet: this.state.bet}, {
             headers: {
@@ -90,11 +95,14 @@ class Mines extends React.Component {
 
                     let revealed = response.data.revealed
                     let game_status = response.data.game_status
+                    let winnings = (this.state.bet * this.response.moves);
 
                     Object.keys(revealed).forEach(function(key) {
                         gameState[key] = revealed[key] + 1;
                     })
                     this.setState({gameState: gameState})
+                    this.setState({moves: response.data.moves})
+                    this.setState({winnings: winnings})
 
                     if(game_status === 1) {
                         //Game over
@@ -124,6 +132,8 @@ class Mines extends React.Component {
         let cashoutDisabled = '';
 
         let displayBalance = this.state.balance > 0 ? this.state.balance / 100 : 0;
+
+        let displayWinnings = this.state.winnings > 0 ? this.state.balance / 100 : 0;
 
         if(this.state.error !== "") {
             displayError =  <Alert mt={2} status='error'>
@@ -194,11 +204,11 @@ class Mines extends React.Component {
                                         </Stat>
                                         <Stat mt={2}>
                                             <StatLabel>Current Mulitiplier</StatLabel>
-                                            <StatNumber>x10</StatNumber>
+                                            <StatNumber>x{this.state.moves}</StatNumber>
                                         </Stat>
                                         <Stat mt={2}>
                                             <StatLabel>Winnings</StatLabel>
-                                            <StatNumber>£100.00</StatNumber>
+                                            <StatNumber>£{displayWinnings}</StatNumber>
                                         </Stat>
                                         <Button mt={2} w='100%' disabled={!cashoutDisabled} colorScheme='green' onClick={() => this.newGame()}>Cash Out</Button>
                                     </Box>
