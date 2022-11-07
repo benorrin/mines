@@ -23,6 +23,11 @@ async function newGame(userID, username, bet) {
         throw error;
     }
 
+    if(bet < 1) {
+        const error = new Error('Bet must be at least 1');
+        throw error;
+    }
+
     const sufficientBalance = await user.checkBalance(bet);
 
     if(!sufficientBalance) {
