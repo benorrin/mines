@@ -23,6 +23,7 @@ var indexRouter = require('./routes/index.js');
 var registerRouter = require('./routes/register.js');
 var loginRouter = require('./routes/login.js');
 var logoutRouter = require('./routes/logout.js');
+var gameRouter = require('./routes/game.js');
 
 
 var app = express();
@@ -78,6 +79,7 @@ app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/logout', passport.authenticate('jwt', {session: false}), logoutRouter);
+app.use('/game', passport.authenticate('jwt', {session: false}), gameRouter);
 
 
 /*
