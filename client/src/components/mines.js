@@ -12,7 +12,8 @@ class Mines extends React.Component {
             gameActive: false,
             gameState: [],
             btndisabled: "",
-            bet: 0
+            bet: 0,
+            balance: 0
         }
 
         this.token = localStorage.getItem("token");
@@ -50,6 +51,7 @@ class Mines extends React.Component {
             if(response.data) {
                 console.log("GAME: new game successful")
                 this.setState({game_id: response.data.game_id})
+                this.setState({balance: response.data.balance})
             } else {
                 console.log("GAME: Game creation error")
             }
@@ -118,6 +120,8 @@ class Mines extends React.Component {
         let newGameDisabled = '';
         let cashoutDisabled = '';
 
+        let displayBalance = this.state.balance > 0 ? this.state.balance / 100 : 0;
+
         if(this.state.gameActive === false) {
             newGameDisabled = 'active';
             cashoutDisabled = '';
@@ -159,7 +163,7 @@ class Mines extends React.Component {
                                     <Box>
                                         <Stat>
                                             <StatLabel>Balance</StatLabel>
-                                            <StatNumber>£10,000.00</StatNumber>
+                                            <StatNumber>£{displayBalance}</StatNumber>
                                         </Stat>
                                     </Box>
                                     <Box>
