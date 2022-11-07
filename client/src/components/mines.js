@@ -42,7 +42,7 @@ class Mines extends React.Component {
         this.setState({gameActive: true});
         this.setState({btndisabled: "1"});
 
-        axios.post('http://localhost:3000/newgame', { bet: this.state.bet}, {
+        axios.post('https://api.mines.orrin.uk/game/new', { bet: this.state.bet}, {
             headers: {
                 'Authorization': `Bearer `+ this.token
             }
@@ -73,7 +73,7 @@ class Mines extends React.Component {
         
             let gameState = this.state.gameState;
 
-            axios.post('http://localhost:3000/move', {
+            axios.post('https://api.mines.orrin.uk/game/move', {
                 game_id: this.state.game_id,
                 square: name
             }, {
