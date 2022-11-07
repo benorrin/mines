@@ -7,6 +7,7 @@ import Home from "./components/home.js";
 import Login from "./components/login.js";
 import Logout from "./components/logout.js";
 import Register from "./components/register.js";
+import Mines from './components/mines.js';
 
 class App extends React.Component{
     constructor(props){
@@ -47,6 +48,7 @@ class App extends React.Component{
                     <Route path="/login" element={<Login state={this.state} setAuthState={this.setAuthState} />}></Route>
                     <Route path="/logout" element={<Logout token={this.state.token} setAuthState={this.setAuthState} />}></Route>
                     <Route path="/register" element={<Register />}></Route>
+                    <Route path="/play" element={<Mines />}></Route>
                 </Routes>
             </BrowserRouter>
         );
