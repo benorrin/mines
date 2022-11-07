@@ -95,7 +95,7 @@ class Mines extends React.Component {
 
                     let revealed = response.data.revealed
                     let game_status = response.data.game_status
-                    let winnings = (this.state.bet * this.response.moves);
+                    let winnings = (this.state.bet * response.data.moves);
 
                     Object.keys(revealed).forEach(function(key) {
                         gameState[key] = revealed[key] + 1;
