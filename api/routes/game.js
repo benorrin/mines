@@ -25,7 +25,7 @@ router.post('/new', async (req, res, next) => {
 
 router.post('/move', async (req, res, next) => {
     let game_id = req.body.game_id;
-    let user = "";
+    let user = req.user._id;
     let square = req.body.square;
 
     let game = await moveGame(game_id, user, square);

@@ -13,10 +13,13 @@ const GameModel = require('../models/game.js');
 async function moveGame(gameID, userID, square) {
     const game = await GameModel.findOne({"game_id": gameID});
 
+    if(game.user_id != userID) {
+        const error = new Error('Invalid user');
+        throw error;
+    }
+
     let revealed = await game.getRevealed();
     let gameBoard = await game.getGameboard();
-
-    // do checks
 
     if(game.isRevealed(square)){
         let revealedSquare = gameBoard[square];
