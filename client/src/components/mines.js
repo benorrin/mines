@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Box, Button, Flex, Grid, GridItem, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Stack, Stat, StatLabel, StatNumber, VStack, StackDivider } from '@chakra-ui/react';
+import { Alert, AlertIcon, Box, Button, Flex, Grid, GridItem, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Stack, Stat, StatLabel, StatNumber, VStack, StackDivider } from '@chakra-ui/react';
 
 class Mines extends React.Component {
     constructor(props) {
