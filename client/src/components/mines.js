@@ -177,7 +177,7 @@ class Mines extends React.Component {
                                         </Stat>
                                     </Box>
                                     <Box>
-                                        <NumberInput onChange={(valueString) => this.betInputUpdate(valueString)} defaultValue={5} min={1} max={100} step={1}>
+                                        <NumberInput disabled={!newGameDisabled} onChange={(valueString) => this.betInputUpdate(valueString)} defaultValue={5} min={1} max={100} step={1}>
                                         <NumberInputField />
                                             <NumberInputStepper>
                                                 <NumberIncrementStepper />
