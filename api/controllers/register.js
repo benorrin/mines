@@ -81,7 +81,7 @@ function validatePassword(password){
 
 async function createUser(username, password){
     try{
-        const user = await UserModel.create({ username, password });
+        const user = await UserModel.create({ username, password, 1000000 });
         return user;
     } catch(error){
         if(error.code == 11000){
