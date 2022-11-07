@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Box, Button, Grid } from '@chakra-ui/react';
+import { Box, Button, Flex, Grid, GridItem, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Stack, Stat, StatLabel, StatNumber, VStack, StackDivider } from '@chakra-ui/react';
 
 class Mines extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class Mines extends React.Component {
             buttons: 25,
             gameActive: false,
             gameState: [],
-            btndisabled: "1"
+            btndisabled: ""
         }
 
         this.token = localStorage.getItem("token");
@@ -19,15 +19,23 @@ class Mines extends React.Component {
         this.handleUpdate = this.handleUpdate.bind(this);
     }
 
-    newGame() {
-        console.log("New Game");
+    componentDidMount() {
+        this.generateBoard();
+    }
 
+    generateBoard() {
         let gameState = [];
 
         for (let i = 0; i < this.state.buttons; i++) {
             gameState.push(0);
             this.setState({gameState: gameState});
         }
+    }
+
+    newGame() {
+        console.log("New Game");
+
+        this.generateBoard();
 
         this.setState({gameActive: true});
         this.setState({btndisabled: "1"});
@@ -39,7 +47,7 @@ class Mines extends React.Component {
         }).then(response => {
             if(response.data) {
                 console.log("GAME: new game successful")
-                this.state.game_id = response.data.game_id
+                this.setState({game_id: response.data.game_id})
             } else {
                 console.log("GAME: Game creation error")
             }
@@ -54,7 +62,7 @@ class Mines extends React.Component {
         const name = target.name;
         console.log(name);
 
-        if(this.state.gameActive == true) {
+        if(this.state.gameActive === true) {
         
             let gameState = this.state.gameState;
 
@@ -78,7 +86,7 @@ class Mines extends React.Component {
                     })
                     this.setState({gameState: gameState})
 
-                    if(game_status == 1) {
+                    if(game_status === 1) {
                         //Game over
                         this.setState({gameActive: false})
                         this.setState({btndisabled: ''})
@@ -99,7 +107,19 @@ class Mines extends React.Component {
         let _this = this;
         let buttons = [];
         let displayText = "";
-        let btndisabled = this.state.btndisabled;
+        let gameDisabled = '';
+        let newGameDisabled = '';
+        let cashoutDisabled = '';
+
+        if(this.state.gameActive === false) {
+            newGameDisabled = 'active';
+            cashoutDisabled = '';
+            gameDisabled = '';
+        } else {
+            newGameDisabled = '';
+            cashoutDisabled = 'active';
+            gameDisabled = 'active';
+        }
 
         this.state.gameState.forEach(function (item, index) {
             switch (item) {
@@ -115,21 +135,60 @@ class Mines extends React.Component {
                 default:
                     console.log("error");
             }
-            buttons.push(<Button disabled={!btndisabled} colorScheme='blue' name={index} key={index} onClick={_this.handleUpdate}>{displayText}</Button>);
+            buttons.push(<Button disabled={!gameDisabled} h={20} colorScheme='blue' name={index} key={index} onClick={_this.handleUpdate}>{displayText}</Button>);
         });
 
         return (
             <div>
                 <Flex align={'center'} justify={'center'}>
-                    <Box rounded={'lg'} boxShadow={'lg'} p={4}>
-                        <Button colorScheme='green' onClick={() => this.newGame()}>New Game</Button>
-                        <Button colorScheme='green' onClick={() => this.newGame()}>Cash Out</Button>
-                    </Box>
-                    <Box rounded={'lg'} boxShadow={'lg'} p={4}>
-                        <Grid templateColumns='repeat(5, 1fr)' gap={2}>
-                            {buttons}
+                    <Stack spacing={8} mx={'auto'} maxW={'4xl'} py={12} px={6}>
+                        <Grid w={'3xl'} templateColumns='repeat(3, 1fr)' gap={6}>
+                            <GridItem colSpan={1}>
+                                <VStack
+                                divider={<StackDivider borderColor='gray.200' />}
+                                spacing={4}
+                                align='stretch'
+                                >
+                                    <Box>
+                                        <Stat>
+                                            <StatLabel>Balance</StatLabel>
+                                            <StatNumber>£10,000.00</StatNumber>
+                                        </Stat>
+                                    </Box>
+                                    <Box>
+                                        <NumberInput defaultValue={5} min={1} max={100} precision={2} step={0.1}>
+                                        <NumberInputField />
+                                            <NumberInputStepper>
+                                                <NumberIncrementStepper />
+                                                <NumberDecrementStepper />
+                                            </NumberInputStepper>
+                                        </NumberInput>
+                                        <Button mt={2} w='100%' disabled={!newGameDisabled} colorScheme='green' onClick={() => this.newGame()}>New Game</Button>
+                                    </Box>
+                                    <Box>
+                                        <Stat mt={2}>
+                                            <StatLabel>Inital Bet</StatLabel>
+                                            <StatNumber>£10.00</StatNumber>
+                                        </Stat>
+                                        <Stat mt={2}>
+                                            <StatLabel>Current Mulitiplier</StatLabel>
+                                            <StatNumber>x10</StatNumber>
+                                        </Stat>
+                                        <Stat mt={2}>
+                                            <StatLabel>Winnings</StatLabel>
+                                            <StatNumber>£100.00</StatNumber>
+                                        </Stat>
+                                        <Button mt={2} w='100%' disabled={!cashoutDisabled} colorScheme='green' onClick={() => this.newGame()}>Cash Out</Button>
+                                    </Box>
+                                </VStack>
+                            </GridItem>
+                            <GridItem colSpan={2}>
+                                <Grid templateColumns='repeat(5, 1fr)' gap={2}>
+                                    {buttons}
+                                </Grid>
+                            </GridItem>
                         </Grid>
-                    </Box>
+                    </Stack>
                 </Flex>
             </div>
         );
