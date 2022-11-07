@@ -44,5 +44,22 @@ UserSchema.methods.isValidPassword = async function(password) {
     return compare;
 }
 
+
+/**
+* Checks if user has sufficient balance for a bet
+* 
+* @param {integer} bet Bet amount to be placed
+* 
+* @returns {boolean} True if user has sufficient balance, false if not.
+*/
+
+UserSchema.methods.checkBalance = async function(bet) {
+    const user = this;
+    
+    const compare = (user.balance - bet) >= 0 ? true : false;
+  
+    return compare;
+}
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
