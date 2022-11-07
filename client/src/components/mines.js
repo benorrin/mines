@@ -7,6 +7,7 @@ class Mines extends React.Component {
         super(props);
     
         this.state = {
+            error: "",
             game_id: "",
             buttons: 25,
             gameActive: false,
@@ -40,9 +41,6 @@ class Mines extends React.Component {
 
         this.generateBoard();
 
-        this.setState({gameActive: true});
-        this.setState({btndisabled: "1"});
-
         axios.post('https://api.mines.orrin.uk/game/new', { bet: this.state.bet}, {
             headers: {
                 'Authorization': `Bearer `+ this.token
@@ -52,8 +50,11 @@ class Mines extends React.Component {
                 console.log("GAME: new game successful")
                 this.setState({game_id: response.data.game_id})
                 this.setState({balance: response.data.balance})
+                this.setState({gameActive: true})
+                this.setState({btndisabled: "1"})
             } else {
                 console.log("GAME: Game creation error")
+                this.setState({error: "Error creating new game"})
             }
         }).catch(error => {
             console.log("catch error");
@@ -116,11 +117,19 @@ class Mines extends React.Component {
         let _this = this;
         let buttons = [];
         let displayText = "";
+        let displayError = "";
         let gameDisabled = '';
         let newGameDisabled = '';
         let cashoutDisabled = '';
 
         let displayBalance = this.state.balance > 0 ? this.state.balance / 100 : 0;
+
+        if(this.state.error != "") {
+            displayError =  <Alert mt={2} status='error'>
+                                <AlertIcon />
+                                {this.state.error}
+                            </Alert>;
+        }
 
         if(this.state.gameActive === false) {
             newGameDisabled = 'active';
@@ -174,6 +183,7 @@ class Mines extends React.Component {
                                                 <NumberDecrementStepper />
                                             </NumberInputStepper>
                                         </NumberInput>
+                                        {displayError}
                                         <Button mt={2} w='100%' disabled={!newGameDisabled} colorScheme='green' onClick={() => this.newGame()}>New Game</Button>
                                     </Box>
                                     <Box>
