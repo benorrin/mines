@@ -24,6 +24,8 @@ async function newGame(userID, username, bet) {
         throw error;
     }
 
+    const userBalance = await user.deductBalance(bet);
+
     try {
         let game_id = crypto.randomBytes(8).toString('hex');
         let gameboard = await generateBoard(5, 5);
@@ -32,14 +34,14 @@ async function newGame(userID, username, bet) {
             game_id: game_id,
             user_id: userID,
             status: 0,
-            bet: 0,
+            bet: bet,
             moves: 0,
             gameboard: gameboard,
             revealed: "{}"
         });
 
-        return game_id;
-        
+        return {game_id: game_id, balance: userBalance};
+
     } catch(error){
         throw error;
     }
