@@ -13,7 +13,7 @@ class Mines extends React.Component {
             gameActive: false,
             gameState: [],
             btndisabled: "",
-            bet: 0,
+            bet: 5,
             balance: 0
         }
 
