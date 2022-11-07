@@ -13,7 +13,7 @@ class Mines extends React.Component {
             gameActive: false,
             gameState: [],
             btndisabled: "",
-            bet: 5,
+            bet: 500,
             balance: 0
         }
 
@@ -118,6 +118,7 @@ class Mines extends React.Component {
         let buttons = [];
         let displayText = "";
         let displayError = "";
+        let displayBet = (this.state.bet / 100).toFixed(2);
         let gameDisabled = '';
         let newGameDisabled = '';
         let cashoutDisabled = '';
@@ -189,7 +190,7 @@ class Mines extends React.Component {
                                     <Box>
                                         <Stat mt={2}>
                                             <StatLabel>Inital Bet</StatLabel>
-                                            <StatNumber>£10.00</StatNumber>
+                                            <StatNumber>£{displayBet}</StatNumber>
                                         </Stat>
                                         <Stat mt={2}>
                                             <StatLabel>Current Mulitiplier</StatLabel>
