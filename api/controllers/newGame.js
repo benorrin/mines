@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const GameModel = require('../models/game.js');
+const UserModel = require('../models/user.js');
 const generateBoard = require('./generateBoard.js');
 const login = require('../controllers/login.js');
 
@@ -15,7 +16,12 @@ const login = require('../controllers/login.js');
 
 async function newGame(userID, username, bet) {
 
-    const user = login.getUser(username);
+    const user = await UserModel.findOne({ username });
+
+    if (!user) {
+        const error = new Error('User not found');
+        throw error;
+    }
 
     const sufficientBalance = await user.checkBalance(bet);
 
