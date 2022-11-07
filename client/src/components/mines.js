@@ -124,7 +124,7 @@ class Mines extends React.Component {
 
         let displayBalance = this.state.balance > 0 ? this.state.balance / 100 : 0;
 
-        if(this.state.error != "") {
+        if(this.state.error !== "") {
             displayError =  <Alert mt={2} status='error'>
                                 <AlertIcon />
                                 {this.state.error}
