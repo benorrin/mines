@@ -133,7 +133,7 @@ class Mines extends React.Component {
 
         let displayBalance = this.state.balance > 0 ? this.state.balance / 100 : 0;
 
-        let displayWinnings = this.state.winnings > 0 ? this.state.balance / 100 : 0;
+        let displayWinnings = this.state.winnings > 0 ? this.state.winnings / 100 : 0;
 
         if(this.state.error !== "") {
             displayError =  <Alert mt={2} status='error'>
