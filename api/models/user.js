@@ -61,5 +61,25 @@ UserSchema.methods.checkBalance = async function(bet) {
     return compare;
 }
 
+
+/**
+* Deducts amount from user balance
+* 
+* @param {integer} bet Bet amount to be placed
+* 
+* @returns {integer} Users new balance
+*/
+
+UserSchema.methods.deductBalance = async function(bet) {
+    const user = this;
+    
+    const newBalance = user.balance - bet;
+
+    user.balance = newBalance;
+    await user.save();
+  
+    return newBalance;
+}
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
