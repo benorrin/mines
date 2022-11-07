@@ -11,12 +11,14 @@ class Mines extends React.Component {
             buttons: 25,
             gameActive: false,
             gameState: [],
-            btndisabled: ""
+            btndisabled: "",
+            bet: 0
         }
 
         this.token = localStorage.getItem("token");
 
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.betInputUpdate = this.betInputUpdate.bind(this);
     }
 
     componentDidMount() {
@@ -40,7 +42,7 @@ class Mines extends React.Component {
         this.setState({gameActive: true});
         this.setState({btndisabled: "1"});
 
-        axios.post('http://localhost:3000/newgame', {}, {
+        axios.post('http://localhost:3000/newgame', { bet: this.state.bet}, {
             headers: {
                 'Authorization': `Bearer `+ this.token
             }
@@ -55,6 +57,11 @@ class Mines extends React.Component {
             console.log("catch error");
             console.log(error);
         })
+    }
+
+    betInputUpdate(valueString) {
+        this.setState({ bet: valueString });
+        console.log(this.state.bet);
     }
 
     handleUpdate(event) {
@@ -156,7 +163,7 @@ class Mines extends React.Component {
                                         </Stat>
                                     </Box>
                                     <Box>
-                                        <NumberInput defaultValue={5} min={1} max={100} precision={2} step={0.1}>
+                                        <NumberInput onChange={(valueString) => this.betInputUpdate(valueString)} defaultValue={5} min={1} max={100} precision={2} step={0.1}>
                                         <NumberInputField />
                                             <NumberInputStepper>
                                                 <NumberIncrementStepper />
