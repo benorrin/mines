@@ -60,8 +60,8 @@ class Mines extends React.Component {
     }
 
     betInputUpdate(valueString) {
-        this.setState({ bet: valueString });
-        console.log(this.state.bet);
+        let bet = valueString * 100;
+        this.setState({ bet: bet });
     }
 
     handleUpdate(event) {
@@ -163,7 +163,7 @@ class Mines extends React.Component {
                                         </Stat>
                                     </Box>
                                     <Box>
-                                        <NumberInput onChange={(valueString) => this.betInputUpdate(valueString)} defaultValue={5} min={1} max={100} precision={2} step={0.1}>
+                                        <NumberInput onChange={(valueString) => this.betInputUpdate(valueString)} defaultValue={5} min={1} max={100} step={1}>
                                         <NumberInputField />
                                             <NumberInputStepper>
                                                 <NumberIncrementStepper />
