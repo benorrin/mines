@@ -1,4 +1,5 @@
 const GameModel = require('../models/game.js');
+const UserModel = require('../models/user.js');
 
 /**
  * Ends a specific game submitted to the server
