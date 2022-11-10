@@ -67,6 +67,30 @@ class Mines extends React.Component {
         })
     }
 
+    endGame() {
+        console.log("End game");
+
+        axios.post('https://api.mines.orrin.uk/game/end', { game_id: this.state.game_id }, {
+            headers: {
+                'Authorization': `Bearer `+ this.token
+            }
+        }).then(response => {
+            if(response.data) {
+                console.log("GAME: new game successful")
+                this.setState({game_id: response.data.game_id})
+                this.setState({balance: response.data.balance})
+                this.setState({gameActive: false})
+                this.setState({btndisabled: ""})
+            } else {
+                console.log("GAME: Game end error")
+                this.setState({error: "Error ending game"})
+            }
+        }).catch(error => {
+            console.log("catch error");
+            console.log(error);
+        })
+    }
+
     betInputUpdate(valueString) {
         let bet = valueString * 100;
         this.setState({ bet: bet });
