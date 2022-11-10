@@ -11,8 +11,6 @@ const UserModel = require('../models/user.js');
  */
 
 async function endGame(gameID, userID) {
-    const game = await GameModel.findOne({"game_id": gameID});
-    const user = await UserModel.findone({userID});
 
     return [500, 1];
 }
