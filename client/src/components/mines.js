@@ -29,6 +29,22 @@ class Mines extends React.Component {
         this.generateBoard();
     }
 
+    getUserBalance() {
+        axios.post('https://api.mines.orrin.uk/user', {}, {
+            headers: {
+                'Authorization': `Bearer `+ this.token
+            }
+        }).then(response => {
+            if(response.data) {
+                this.setState({balance: response.data.balance})
+            } else {
+                this.setState({error: "Error getting user data"})
+            }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
     generateBoard() {
         let gameState = [];
 
@@ -52,17 +68,14 @@ class Mines extends React.Component {
             }
         }).then(response => {
             if(response.data) {
-                console.log("GAME: new game successful")
                 this.setState({game_id: response.data.game_id})
                 this.setState({balance: response.data.balance})
                 this.setState({gameActive: true})
                 this.setState({btndisabled: "1"})
             } else {
-                console.log("GAME: Game creation error")
                 this.setState({error: "Error creating new game"})
             }
         }).catch(error => {
-            console.log("catch error");
             console.log(error);
         })
     }
@@ -76,17 +89,14 @@ class Mines extends React.Component {
             }
         }).then(response => {
             if(response.data) {
-                console.log("GAME: new game successful")
                 this.setState({game_id: response.data.game_id})
                 this.setState({balance: response.data.balance})
                 this.setState({gameActive: false})
                 this.setState({btndisabled: ""})
             } else {
-                console.log("GAME: Game end error")
                 this.setState({error: "Error ending game"})
             }
         }).catch(error => {
-            console.log("catch error");
             console.log(error);
         })
     }
@@ -114,9 +124,6 @@ class Mines extends React.Component {
                 }
             }).then(response => {
                 if(response.data) {
-                    console.log("GAME: move successful")
-                    console.log(response.data.revealed)
-
                     let revealed = response.data.revealed
                     let game_status = response.data.game_status
                     let winnings = (this.state.bet * response.data.moves);
@@ -132,13 +139,11 @@ class Mines extends React.Component {
                         //Game over
                         this.setState({gameActive: false})
                         this.setState({btndisabled: ''})
-                        console.log("GAME: game over")
                     }
                 } else {
                     console.log("GAME: move error")
                 }
             }).catch(error => {
-                console.log("catch error");
                 console.log(error);
             })
         }
