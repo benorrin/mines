@@ -5,8 +5,8 @@ const user = require('../controllers/user.js');
 
 router.post('/', async (req, res, next) => {
     try {
-        let user = req.user._id;
-        let balance = await user(user);
+        let userID = req.user._id;
+        let balance = await user(userID);
 
         res.json({
             balance: balance
