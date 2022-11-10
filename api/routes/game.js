@@ -48,7 +48,7 @@ router.post('/end', async (req, res, next) => {
 
     res.json({
         balance: game[0],
-        game_status: game[2]
+        game_status: game[1]
     })
 });
 
