@@ -234,7 +234,7 @@ class Mines extends React.Component {
                                             <StatLabel>Winnings</StatLabel>
                                             <StatNumber>£{displayWinnings}</StatNumber>
                                         </Stat>
-                                        <Button mt={2} w='100%' disabled={!cashoutDisabled} colorScheme='green' onClick={() => this.newGame()}>Cash Out</Button>
+                                        <Button mt={2} w='100%' disabled={!cashoutDisabled} colorScheme='green' onClick={() => this.endGame()}>Cash Out</Button>
                                     </Box>
                                 </VStack>
                             </GridItem>
