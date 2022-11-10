@@ -3,6 +3,7 @@ var router = express.Router();
 const passport = require('passport');
 const newGame = require('../controllers/newGame.js');
 const moveGame = require('../controllers/moveGame.js');
+const endGame = require('../controllers/endGame.js');
 
 
 router.post('/new', async (req, res, next) => {
