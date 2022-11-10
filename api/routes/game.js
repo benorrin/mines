@@ -38,4 +38,18 @@ router.post('/move', async (req, res, next) => {
     })
 });
 
+
+router.post('/end', async (req, res, next) => {
+    let game_id = req.body.game_id;
+    let user = req.user._id;
+
+    let game = await endGame(game_id, user);
+
+    res.json({
+        game_id: game[0],
+        balance: game[1],
+        game_status: game[2]
+    })
+});
+
 module.exports = router;
