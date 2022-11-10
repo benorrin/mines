@@ -25,31 +25,41 @@ router.post('/new', async (req, res, next) => {
 
 
 router.post('/move', async (req, res, next) => {
-    let game_id = req.body.game_id;
-    let user = req.user._id;
-    let square = req.body.square;
+    try {
+        let game_id = req.body.game_id;
+        let user = req.user._id;
+        let square = req.body.square;
 
-    let game = await moveGame(game_id, user, square);
+        let game = await moveGame(game_id, user, square);
 
-    res.json({
-        game_id: game_id,
-        moves: game[0],
-        revealed: game[1],
-        game_status: game[2]
-    })
+        res.json({
+            game_id: game_id,
+            moves: game[0],
+            revealed: game[1],
+            game_status: game[2]
+        })
+
+    } catch(error){
+        next(error);
+    }
 });
 
 
 router.post('/end', async (req, res, next) => {
-    let game_id = req.body.game_id;
-    let user = req.user._id;
+    try {
+        let game_id = req.body.game_id;
+        let user = req.user._id;
 
-    let game = await endGame(game_id, user);
+        let game = await endGame(game_id, user);
 
-    res.json({
-        balance: game[0],
-        game_status: game[1]
-    })
+        res.json({
+            balance: game[0],
+            game_status: game[1]
+        })
+
+    } catch(error){
+        next(error);
+    }
 });
 
 module.exports = router;

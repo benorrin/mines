@@ -11,30 +11,35 @@ const UserModel = require('../models/user.js');
  */
 
 async function endGame(gameID, userID) {
-    const game = await GameModel.findOne({"game_id": gameID});
-    const user = await UserModel.findOne({"_id": userID});
+    try {
+        const game = await GameModel.findOne({"game_id": gameID});
+        const user = await UserModel.findOne({"_id": userID});
 
-    if(game.user_id != userID) {
-        const error = new Error('Invalid user');
+        if(game.user_id != userID) {
+            const error = new Error('Invalid user');
+            throw error;
+        }
+        
+        if(game.status === 1) {
+            const error = new Error('Game already ended');
+            throw error;
+        }
+        
+        game.status = 1;
+        await game.save();
+        
+        const winnings = game.bet * game.moves;
+        
+        const newBalance = user.balance + winnings;
+        
+        user.balance = newBalance;
+        await user.save();
+
+        return [newBalance, game.status];
+        
+    } catch(error) {
         throw error;
     }
-    
-    if(game.status === 1) {
-        const error = new Error('Game already ended');
-        throw error;
-    }
-    
-    game.status = 1;
-    await game.save();
-    
-    const winnings = game.bet * game.moves;
-    
-    const newBalance = user.balance + winnings;
-    
-    user.balance = newBalance;
-    await user.save();
-
-    return [newBalance, game.status];
 }
 
 module.exports = endGame;
