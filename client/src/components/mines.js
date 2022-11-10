@@ -27,6 +27,7 @@ class Mines extends React.Component {
 
     componentDidMount() {
         this.generateBoard();
+        this.getUserBalance();
     }
 
     getUserBalance() {
