@@ -36,4 +36,4 @@ async function endGame(gameID, userID) {
     return [ gameID, newBalance, game.status];
 }
 
-module.exports = moveGame;
+module.exports = endGame;
