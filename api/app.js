@@ -84,7 +84,7 @@ app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/logout', passport.authenticate('jwt', {session: false}), logoutRouter);
-app.use('/game', passport.authenticate('jwt', {session: false}), gameRouter);
+app.use('/game', gameRouter);
 
 
 /*

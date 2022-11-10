@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-mongoose.promise = Promise
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+mongoose.promise = Promise;
 
 const GameSchema = new Schema({
   game_id: {
