@@ -9,7 +9,7 @@ const GameModel = require('../models/game.js');
  * @returns {array} gameBoard The generated gameboard in array form. 1 respresents mines, 0 represents free squares.
  */
 
-async function moveGame(gameID, userID) {
+async function endGame(gameID, userID) {
     const game = await GameModel.findOne({"game_id": gameID});
     const user = await UserModel.findone({userID});
 
