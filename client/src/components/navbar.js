@@ -16,8 +16,6 @@ const NavBar = (props) => {
     if(props.state.authState === true){
         buttonRoute = "/logout";
         buttonText = "Logout";
-        userBalance = <MenuItem>$10,000</MenuItem>
-        accountPage = <MenuItem to="/account">Account</MenuItem>
     } else{
         buttonRoute = "/login";
         buttonText = "Login";
@@ -91,8 +89,6 @@ const MenuLinks = ({ isOpen, buttonRoute, buttonText, userBalance, accountPage }
             <MenuItem to="/play">Play</MenuItem>
             <MenuItem to="/faq">FAQ</MenuItem>
             <MenuItem>|</MenuItem>
-            {userBalance}
-            {accountPage}
             <MenuItem to={buttonRoute} isLast>
                 <Button
                     size="sm"
