@@ -44,11 +44,11 @@ router.post('/end', async (req, res, next) => {
     let game_id = req.body.game_id;
     let user = req.user._id;
 
-    //let game = await endGame(game_id, user);
+    let game = await endGame(game_id, user);
 
     res.json({
-        balance: 500,
-        game_status: 1
+        balance: game[0],
+        game_status: game[2]
     })
 });
 
