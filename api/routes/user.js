@@ -6,7 +6,7 @@ const user = require('../controllers/user.js');
 router.post('/', async (req, res, next) => {
     try {
         let user = req.user._id;
-        let balance = await newGame(user, username, bet);
+        let balance = await user(user);
 
         res.json({
             balance: balance
